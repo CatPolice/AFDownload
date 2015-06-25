@@ -17,8 +17,10 @@
 }
 
 @property (weak, nonatomic) IBOutlet UIProgressView *progress;
+
 - (IBAction)beginAction:(id)sender;
-- (IBAction)zanAction:(id)sender;
+- (IBAction)pauseAction:(id)sender;
+- (IBAction)resumeAction:(id)sender;
 
 
 @end
@@ -34,12 +36,23 @@
     [super didReceiveMemoryWarning];
 }
 
+// 开始
 - (IBAction)beginAction:(id)sender {
-    [self download];
+//    [self download];
+    
+    [self downloadStart];
 }
 
-- (IBAction)zanAction:(id)sender {
+// 暂停
+- (IBAction)pauseAction:(id)sender {
+    [self downloadPause];
 }
+
+// 继续
+- (IBAction)resumeAction:(id)sender {
+    [self downloadResume];
+}
+
 
 #pragma mark download
 
@@ -111,30 +124,27 @@
     //添加下载请求（获取服务器的输出流）
     _operation.outputStream = [NSOutputStream outputStreamToFileAtPath:filePath append:NO];
     
-    //设置下载进度条
     __weak __typeof(self)weakSelf = self;
     [_operation setDownloadProgressBlock:^(NSUInteger bytesRead, long long totalBytesRead, long long totalBytesExpectedToRead) {
         __strong __typeof(weakSelf)strongSelf = weakSelf;
-        //显示下载进度
         CGFloat progressfloat = ((float)totalBytesRead) / totalBytesExpectedToRead;
         [strongSelf.progress setProgress:progressfloat animated:YES];
-        
-        
     }];
     
     //请求管理判断请求结果
     [_operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         
-        //请求成功
+        //success
         NSLog(@"Finish and Download to: %@", filePath);
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         
-        //请求失败
+        //error
         NSLog(@"Error: %@",error);
     }];
 
 }
+
 
 
 
