@@ -9,6 +9,14 @@
 /* Begin PBXBuildFile section */
 		8693E1ED1B3BA21F001B1903 /* TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8693E1EB1B3BA21F001B1903 /* TableViewCell.m */; };
 		8693E1EE1B3BA21F001B1903 /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8693E1EC1B3BA21F001B1903 /* TableViewCell.xib */; };
+		8693E2001B3BF425001B1903 /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = 8693E1F41B3BF425001B1903 /* ioapi.c */; };
+		8693E2011B3BF425001B1903 /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = 8693E1F61B3BF425001B1903 /* mztools.c */; };
+		8693E2021B3BF425001B1903 /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = 8693E1F81B3BF425001B1903 /* unzip.c */; settings = {COMPILER_FLAGS = "-w"; }; };
+		8693E2031B3BF425001B1903 /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = 8693E1FA1B3BF425001B1903 /* zip.c */; settings = {COMPILER_FLAGS = "-w"; }; };
+		8693E2041B3BF425001B1903 /* ZipArchive.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8693E1FD1B3BF425001B1903 /* ZipArchive.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc -w"; }; };
+		8693E2051B3BF425001B1903 /* ZipManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8693E1FF1B3BF425001B1903 /* ZipManager.m */; };
+		8693E2071B3BF4A3001B1903 /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8693E2061B3BF4A3001B1903 /* libz.1.2.5.dylib */; };
+		8693E2091B3BF4AB001B1903 /* libz.1.1.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8693E2081B3BF4AB001B1903 /* libz.1.1.3.dylib */; };
 		EEB07BCB1B3AC15200B037AA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EEB07BCA1B3AC15200B037AA /* main.m */; };
 		EEB07BCE1B3AC15200B037AA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EEB07BCD1B3AC15200B037AA /* AppDelegate.m */; };
 		EEB07BD11B3AC15200B037AA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EEB07BD01B3AC15200B037AA /* ViewController.m */; };
@@ -49,6 +57,21 @@
 		8693E1EA1B3BA21F001B1903 /* TableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewCell.h; sourceTree = "<group>"; };
 		8693E1EB1B3BA21F001B1903 /* TableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewCell.m; sourceTree = "<group>"; };
 		8693E1EC1B3BA21F001B1903 /* TableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
+		8693E1F31B3BF425001B1903 /* crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypt.h; sourceTree = "<group>"; };
+		8693E1F41B3BF425001B1903 /* ioapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ioapi.c; sourceTree = "<group>"; };
+		8693E1F51B3BF425001B1903 /* ioapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ioapi.h; sourceTree = "<group>"; };
+		8693E1F61B3BF425001B1903 /* mztools.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mztools.c; sourceTree = "<group>"; };
+		8693E1F71B3BF425001B1903 /* mztools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mztools.h; sourceTree = "<group>"; };
+		8693E1F81B3BF425001B1903 /* unzip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = unzip.c; sourceTree = "<group>"; };
+		8693E1F91B3BF425001B1903 /* unzip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = unzip.h; sourceTree = "<group>"; };
+		8693E1FA1B3BF425001B1903 /* zip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zip.c; sourceTree = "<group>"; };
+		8693E1FB1B3BF425001B1903 /* zip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zip.h; sourceTree = "<group>"; };
+		8693E1FC1B3BF425001B1903 /* ZipArchive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZipArchive.h; sourceTree = "<group>"; };
+		8693E1FD1B3BF425001B1903 /* ZipArchive.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ZipArchive.mm; sourceTree = "<group>"; };
+		8693E1FE1B3BF425001B1903 /* ZipManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZipManager.h; sourceTree = "<group>"; };
+		8693E1FF1B3BF425001B1903 /* ZipManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZipManager.m; sourceTree = "<group>"; };
+		8693E2061B3BF4A3001B1903 /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
+		8693E2081B3BF4AB001B1903 /* libz.1.1.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.1.3.dylib; path = usr/lib/libz.1.1.3.dylib; sourceTree = SDKROOT; };
 		EEB07BC51B3AC15200B037AA /* AFDownload.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AFDownload.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EEB07BC91B3AC15200B037AA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EEB07BCA1B3AC15200B037AA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -105,6 +128,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8693E2091B3BF4AB001B1903 /* libz.1.1.3.dylib in Frameworks */,
+				8693E2071B3BF4A3001B1903 /* libz.1.2.5.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -118,6 +143,42 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8693E1F01B3BF425001B1903 /* ZipManager */ = {
+			isa = PBXGroup;
+			children = (
+				8693E1F11B3BF425001B1903 /* ZipArchive */,
+				8693E1FE1B3BF425001B1903 /* ZipManager.h */,
+				8693E1FF1B3BF425001B1903 /* ZipManager.m */,
+			);
+			path = ZipManager;
+			sourceTree = "<group>";
+		};
+		8693E1F11B3BF425001B1903 /* ZipArchive */ = {
+			isa = PBXGroup;
+			children = (
+				8693E1F21B3BF425001B1903 /* minizip */,
+				8693E1FC1B3BF425001B1903 /* ZipArchive.h */,
+				8693E1FD1B3BF425001B1903 /* ZipArchive.mm */,
+			);
+			path = ZipArchive;
+			sourceTree = "<group>";
+		};
+		8693E1F21B3BF425001B1903 /* minizip */ = {
+			isa = PBXGroup;
+			children = (
+				8693E1F31B3BF425001B1903 /* crypt.h */,
+				8693E1F41B3BF425001B1903 /* ioapi.c */,
+				8693E1F51B3BF425001B1903 /* ioapi.h */,
+				8693E1F61B3BF425001B1903 /* mztools.c */,
+				8693E1F71B3BF425001B1903 /* mztools.h */,
+				8693E1F81B3BF425001B1903 /* unzip.c */,
+				8693E1F91B3BF425001B1903 /* unzip.h */,
+				8693E1FA1B3BF425001B1903 /* zip.c */,
+				8693E1FB1B3BF425001B1903 /* zip.h */,
+			);
+			path = minizip;
+			sourceTree = "<group>";
+		};
 		EEB07BBC1B3AC15200B037AA = {
 			isa = PBXGroup;
 			children = (
@@ -139,6 +200,7 @@
 		EEB07BC71B3AC15200B037AA /* AFDownload */ = {
 			isa = PBXGroup;
 			children = (
+				8693E1F01B3BF425001B1903 /* ZipManager */,
 				EEB07BEE1B3AC20C00B037AA /* AFNetworking */,
 				EEB07C021B3AC20C00B037AA /* UIKit+AFNetworking */,
 				EEB07BCC1B3AC15200B037AA /* AppDelegate.h */,
@@ -159,6 +221,8 @@
 		EEB07BC81B3AC15200B037AA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				8693E2081B3BF4AB001B1903 /* libz.1.1.3.dylib */,
+				8693E2061B3BF4A3001B1903 /* libz.1.2.5.dylib */,
 				EEB07BC91B3AC15200B037AA /* Info.plist */,
 				EEB07BCA1B3AC15200B037AA /* main.m */,
 			);
@@ -337,23 +401,29 @@
 				EEB07C211B3AC20C00B037AA /* UIImageView+AFNetworking.m in Sources */,
 				EEB07BD11B3AC15200B037AA /* ViewController.m in Sources */,
 				EEB07C151B3AC20C00B037AA /* AFHTTPRequestOperationManager.m in Sources */,
+				8693E2041B3BF425001B1903 /* ZipArchive.mm in Sources */,
 				EEB07C221B3AC20C00B037AA /* UIProgressView+AFNetworking.m in Sources */,
 				EEB07C171B3AC20C00B037AA /* AFNetworkReachabilityManager.m in Sources */,
+				8693E2021B3BF425001B1903 /* unzip.c in Sources */,
 				EEB07C1B1B3AC20C00B037AA /* AFURLResponseSerialization.m in Sources */,
 				8693E1ED1B3BA21F001B1903 /* TableViewCell.m in Sources */,
+				8693E2001B3BF425001B1903 /* ioapi.c in Sources */,
 				EEB07C191B3AC20C00B037AA /* AFURLConnectionOperation.m in Sources */,
 				EEB07C201B3AC20C00B037AA /* UIButton+AFNetworking.m in Sources */,
 				EEB07C1E1B3AC20C00B037AA /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				EEB07C181B3AC20C00B037AA /* AFSecurityPolicy.m in Sources */,
 				EEB07C231B3AC20C00B037AA /* UIRefreshControl+AFNetworking.m in Sources */,
+				8693E2011B3BF425001B1903 /* mztools.c in Sources */,
 				EEB07C241B3AC20C00B037AA /* UIWebView+AFNetworking.m in Sources */,
 				EEB07C161B3AC20C00B037AA /* AFHTTPSessionManager.m in Sources */,
+				8693E2031B3BF425001B1903 /* zip.c in Sources */,
 				EEB07C1F1B3AC20C00B037AA /* UIAlertView+AFNetworking.m in Sources */,
 				EEB07C1A1B3AC20C00B037AA /* AFURLRequestSerialization.m in Sources */,
 				EEB07C1D1B3AC20C00B037AA /* AFNetworkActivityIndicatorManager.m in Sources */,
 				EEB07C1C1B3AC20C00B037AA /* AFURLSessionManager.m in Sources */,
 				EEB07BCE1B3AC15200B037AA /* AppDelegate.m in Sources */,
 				EEB07BCB1B3AC15200B037AA /* main.m in Sources */,
+				8693E2051B3BF425001B1903 /* ZipManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -431,7 +501,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -468,7 +538,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -480,7 +550,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = AFDownload/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -491,7 +561,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = AFDownload/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -510,6 +580,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = AFDownloadTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AFDownload.app/AFDownload";
@@ -525,6 +596,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = AFDownloadTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AFDownload.app/AFDownload";
