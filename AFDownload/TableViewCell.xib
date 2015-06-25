@@ -24,9 +24,9 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1R3-lA-Mqd">
-                        <rect key="frame" x="259" y="11" width="42" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <rect key="frame" x="243" y="13" width="77" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="1" green="0.010051519910000001" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dYQ-Qj-MMH">
@@ -45,7 +45,7 @@
                 <outlet property="cellPrg" destination="j4s-b9-9dh" id="oHx-Xt-CFN"/>
                 <outlet property="cellState" destination="1R3-lA-Mqd" id="8Gt-y5-2yu"/>
             </connections>
-            <point key="canvasLocation" x="340" y="432"/>
+            <point key="canvasLocation" x="340" y="430"/>
         </tableViewCell>
     </objects>
 </document>

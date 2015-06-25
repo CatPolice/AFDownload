@@ -24,13 +24,11 @@
     
     AFHTTPRequestOperation *_operation;      //创建请求管理（用于上传和下载）
     
-    __weak IBOutlet UITableView *_tableview;
-    
-    
     
     NSMutableDictionary *_operationList;
     
 }
+@property (weak, nonatomic) IBOutlet UITableView *tableview;
 
 @property (weak, nonatomic) IBOutlet UIProgressView *progress;
 
@@ -249,6 +247,9 @@ withAFHTTPRequestOperation:(AFHTTPRequestOperation *)operation
      
      TableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     cell.cellName.text = [_cellName objectAtIndex:indexPath.row];
+    //0:未下载  1:下载中 2:暂停 3:完成
+    NSArray *arr = @[@"下载",@"下载中",@"暂停",@"完成"];
+    cell.cellState.text = [arr objectAtIndex:cell.downloadState];
     
     __weak __typeof(self)weakSelf = self;
     
@@ -265,12 +266,10 @@ withAFHTTPRequestOperation:(AFHTTPRequestOperation *)operation
                    withUIProgressView:cell.cellPrg
            withAFHTTPRequestOperation:operation
                  withCurrDownloadCell:cell];
-                
-//                cell.cellOperation = operation;
+
                 cell.downloadState = 1;
             }
                 break;
-                
                 
             case 1:// downloading
             {
@@ -295,12 +294,15 @@ withAFHTTPRequestOperation:(AFHTTPRequestOperation *)operation
             case 3:
             {
                 NSLog(@"下载已经完成");
+                UIAlertView *al = [[UIAlertView alloc] initWithTitle:@"提示" message:@"资源已经下载完成" delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil, nil];
+                [al show];
             }
                 break;
                 
             default:
                 break;
         }
+        [strongSelf.tableview reloadData];
     };
 
     return cell;
