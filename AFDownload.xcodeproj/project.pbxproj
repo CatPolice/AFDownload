@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8693E1ED1B3BA21F001B1903 /* TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8693E1EB1B3BA21F001B1903 /* TableViewCell.m */; };
+		8693E1EE1B3BA21F001B1903 /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8693E1EC1B3BA21F001B1903 /* TableViewCell.xib */; };
 		EEB07BCB1B3AC15200B037AA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EEB07BCA1B3AC15200B037AA /* main.m */; };
 		EEB07BCE1B3AC15200B037AA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EEB07BCD1B3AC15200B037AA /* AppDelegate.m */; };
 		EEB07BD11B3AC15200B037AA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EEB07BD01B3AC15200B037AA /* ViewController.m */; };
@@ -44,6 +46,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8693E1EA1B3BA21F001B1903 /* TableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewCell.h; sourceTree = "<group>"; };
+		8693E1EB1B3BA21F001B1903 /* TableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewCell.m; sourceTree = "<group>"; };
+		8693E1EC1B3BA21F001B1903 /* TableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
 		EEB07BC51B3AC15200B037AA /* AFDownload.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AFDownload.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EEB07BC91B3AC15200B037AA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EEB07BCA1B3AC15200B037AA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -140,6 +145,9 @@
 				EEB07BCD1B3AC15200B037AA /* AppDelegate.m */,
 				EEB07BCF1B3AC15200B037AA /* ViewController.h */,
 				EEB07BD01B3AC15200B037AA /* ViewController.m */,
+				8693E1EA1B3BA21F001B1903 /* TableViewCell.h */,
+				8693E1EB1B3BA21F001B1903 /* TableViewCell.m */,
+				8693E1EC1B3BA21F001B1903 /* TableViewCell.xib */,
 				EEB07BD21B3AC15200B037AA /* Main.storyboard */,
 				EEB07BD51B3AC15200B037AA /* Images.xcassets */,
 				EEB07BD71B3AC15200B037AA /* LaunchScreen.xib */,
@@ -305,6 +313,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EEB07BD41B3AC15200B037AA /* Main.storyboard in Resources */,
+				8693E1EE1B3BA21F001B1903 /* TableViewCell.xib in Resources */,
 				EEB07BD91B3AC15200B037AA /* LaunchScreen.xib in Resources */,
 				EEB07BD61B3AC15200B037AA /* Images.xcassets in Resources */,
 			);
@@ -331,6 +340,7 @@
 				EEB07C221B3AC20C00B037AA /* UIProgressView+AFNetworking.m in Sources */,
 				EEB07C171B3AC20C00B037AA /* AFNetworkReachabilityManager.m in Sources */,
 				EEB07C1B1B3AC20C00B037AA /* AFURLResponseSerialization.m in Sources */,
+				8693E1ED1B3BA21F001B1903 /* TableViewCell.m in Sources */,
 				EEB07C191B3AC20C00B037AA /* AFURLConnectionOperation.m in Sources */,
 				EEB07C201B3AC20C00B037AA /* UIButton+AFNetworking.m in Sources */,
 				EEB07C1E1B3AC20C00B037AA /* UIActivityIndicatorView+AFNetworking.m in Sources */,

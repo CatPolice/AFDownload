@@ -8,12 +8,28 @@
 
 #import "ViewController.h"
 #import "AFNetworking.h"
+#import "TableViewCell.h"
 
-@interface ViewController ()
+@interface ViewController ()<UITableViewDataSource, UITableViewDelegate>
 {
+    
+    BOOL _nibsRegistered;
+    
+    NSArray *_cellName;
+    NSArray *_urlArr;
+    
+    
+    
     AFURLSessionManager * _manager;
     
     AFHTTPRequestOperation *_operation;      //创建请求管理（用于上传和下载）
+    
+    __weak IBOutlet UITableView *_tableview;
+    
+    
+    
+    NSMutableDictionary *_operationList;
+    
 }
 
 @property (weak, nonatomic) IBOutlet UIProgressView *progress;
@@ -30,6 +46,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    _operationList = [[NSMutableDictionary alloc] init];
+    
+    _tableview.delegate = self;
+    _tableview.dataSource = self;
+    
+    _cellName = @[@"Res1",@"Res2"];
+    _urlArr = @[@"http://dldir1.qq.com/qqfile/QQforMac/QQ_V4.0.2.dmg",@"http://dldir1.qq.com/qqfile/QQforMac/QQ_V4.0.2.dmg"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -109,8 +132,6 @@
 }
 
 
-
-
 - (void)download2 {
     //方法二
     NSString *filePath = [NSString stringWithFormat:@"%@/Documents/QQ_V4.0.2.dmg", NSHomeDirectory()];
@@ -137,24 +158,153 @@
         //success
         NSLog(@"Finish and Download to: %@", filePath);
         
+        
+        // 请求成功之后把 operation 从list 中移除
+        
+        
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         
         //error
         NSLog(@"Error: %@",error);
     }];
+}
 
+
+
+#pragma mark download parment
+
+- (void)    download3:(NSString *)name
+      withDownloadURL:(NSString *)url
+ withDownloadSavePath:(NSString *)path
+   withUIProgressView:(UIProgressView *)prg
+withAFHTTPRequestOperation:(AFHTTPRequestOperation *)operation
+ withCurrDownloadCell:(TableViewCell *)cell;
+
+{
+    
+    
+    NSString *str = [NSString stringWithFormat:@"%@%@",@"%@/Documents/",name];
+    
+    NSString *filePath = [NSString stringWithFormat:str, NSHomeDirectory()];
+    
+    //打印文件保存的路径
+    NSLog(@"%@",filePath);
+    
+    //创建请求管理
+    operation = [[AFHTTPRequestOperation alloc] initWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]]];
+    
+    //添加下载请求（获取服务器的输出流）
+    operation.outputStream = [NSOutputStream outputStreamToFileAtPath:filePath append:NO];
+    
+    [operation setDownloadProgressBlock:^(NSUInteger bytesRead, long long totalBytesRead, long long totalBytesExpectedToRead) {
+        CGFloat progressfloat = ((float)totalBytesRead) / totalBytesExpectedToRead;
+        [prg setProgress:progressfloat animated:YES];
+        
+        NSLog(@"%f",progressfloat);
+    }];
+    
+    //请求管理判断请求结果
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        //success
+        NSLog(@"Finish and Download to: %@", filePath);
+        cell.downloadState = 3;
+
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+        //error
+        NSLog(@"Error: %@",error);
+    }];
+    
+    cell.cellOperation = operation;
+    
+    [operation start];
 }
 
 
 
 
 
+#pragma mark - Table view data source
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 44;
+}
 
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    // Return the number of rows in the section.
+    return 2;
+}
 
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    static NSString * identifier = @"TableViewCell";
+     if (!_nibsRegistered) {
+     UINib * nib = [UINib nibWithNibName:@"TableViewCell" bundle:nil];
+     [tableView registerNib:nib forCellReuseIdentifier:identifier];
+     _nibsRegistered = YES;
+     }
+     
+     TableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    cell.cellName.text = [_cellName objectAtIndex:indexPath.row];
+    
+    __weak __typeof(self)weakSelf = self;
+    
+    cell.cellDownloadCallBack = ^(TableViewCell *cell){
+        __strong __typeof(weakSelf)strongSelf = weakSelf;
+        
+        switch (cell.downloadState) {
+            case 0: // prepareing
+            {
+                AFHTTPRequestOperation *operation;
+                [strongSelf download3:[_cellName objectAtIndex:indexPath.row]
+                      withDownloadURL:[_urlArr objectAtIndex:indexPath.row]
+                 withDownloadSavePath:nil
+                   withUIProgressView:cell.cellPrg
+           withAFHTTPRequestOperation:operation
+                 withCurrDownloadCell:cell];
+                
+//                cell.cellOperation = operation;
+                cell.downloadState = 1;
+            }
+                break;
+                
+                
+            case 1:// downloading
+            {
+                if (cell.cellOperation) {
+                    AFHTTPRequestOperation *operation = cell.cellOperation;
+                    [operation pause];
+                    cell.downloadState = 2;
+                }
+            }
+                break;
+                
+            case 2: // pauseing
+            {
+                if (cell.cellOperation) {
+                    AFHTTPRequestOperation *operation = cell.cellOperation;
+                    [operation resume];
+                    cell.downloadState = 1;
+                }
+            }
+                break;
+            
+            case 3:
+            {
+                NSLog(@"下载已经完成");
+            }
+                break;
+                
+            default:
+                break;
+        }
+    };
 
-
-
+    return cell;
+}
 
 
 
