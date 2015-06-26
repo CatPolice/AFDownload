@@ -53,7 +53,7 @@
     _tableview.dataSource = self;
     
     _cellName = @[@"Res1",@"Res2"];
-    _urlArr = @[@"http://dldir1.qq.com/qqfile/QQforMac/QQ_V4.0.2.dmg",@"http://dl_dir2.qq.com/invc/xfspeed/qdesk/versetup/QDeskSetup_25_1277.exe"];
+    _urlArr = @[@"http://192.168.215.192:9002/crmserver/upload/model/A5.zip",@"http://dl_dir2.qq.com/invc/xfspeed/qdesk/versetup/QDeskSetup_25_1277.exe"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -198,10 +198,11 @@ withAFHTTPRequestOperation:(AFHTTPRequestOperation *)operation
     operation.outputStream = [NSOutputStream outputStreamToFileAtPath:filePath append:NO];
     
     [operation setDownloadProgressBlock:^(NSUInteger bytesRead, long long totalBytesRead, long long totalBytesExpectedToRead) {
-        CGFloat progressfloat = ((float)totalBytesRead) / totalBytesExpectedToRead;
+        CGFloat progressfloat = ((float)totalBytesRead) / (totalBytesExpectedToRead + bytesRead);
         [prg setProgress:progressfloat animated:YES];
         
-        NSLog(@"%f",progressfloat);
+//        NSLog(@"%f",progressfloat);
+        NSLog(@"%zd",bytesRead);
     }];
     
     //请求管理判断请求结果
@@ -249,12 +250,23 @@ withAFHTTPRequestOperation:(AFDownloadRequestOperation *)operation
     //添加下载请求（获取服务器的输出流）
 //    _operationDownload.outputStream = [NSOutputStream outputStreamToFileAtPath:filePath append:NO];
     
-    [operation setDownloadProgressBlock:^(NSUInteger bytesRead, long long totalBytesRead, long long totalBytesExpectedToRead) {
-        CGFloat progressfloat = ((float)totalBytesRead) / totalBytesExpectedToRead;
+//    [operation setDownloadProgressBlock:^(NSUInteger bytesRead, long long totalBytesRead, long long totalBytesExpectedToRead) {
+//        CGFloat progressfloat = ((float)(bytesRead)) / totalBytesExpectedToRead;
+//        [prg setProgress:progressfloat animated:YES];
+//        
+//        NSLog(@"%f",progressfloat);
+//    }];
+    
+    
+    [operation setProgressiveDownloadProgressBlock:^(AFDownloadRequestOperation *operation, NSInteger bytesRead, long long totalBytesRead, long long totalBytesExpected, long long totalBytesReadForFile, long long totalBytesExpectedToReadForFile) {
+        
+        CGFloat progressfloat = totalBytesReadForFile/(float)totalBytesExpectedToReadForFile;
+        NSLog(@"%f",progressfloat);
+        
         [prg setProgress:progressfloat animated:YES];
         
-        NSLog(@"%f",progressfloat);
     }];
+    
     
     //请求管理判断请求结果
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -317,27 +329,27 @@ withAFHTTPRequestOperation:(AFDownloadRequestOperation *)operation
         switch (cell.downloadState) {
             case 0: // prepareing
             {
-                AFHTTPRequestOperation *operation;
-                [strongSelf download3:[_cellName objectAtIndex:indexPath.row]
-                      withDownloadURL:[_urlArr objectAtIndex:indexPath.row]
-                 withDownloadSavePath:nil
-                   withUIProgressView:cell.cellPrg
-           withAFHTTPRequestOperation:operation
-                 withCurrDownloadCell:cell];
-
-                cell.downloadState = 1;
-                
-                
-                
-//                AFDownloadRequestOperation *operation;
-//                [strongSelf download4:[_cellName objectAtIndex:indexPath.row]
+//                AFHTTPRequestOperation *operation;
+//                [strongSelf download3:[_cellName objectAtIndex:indexPath.row]
 //                      withDownloadURL:[_urlArr objectAtIndex:indexPath.row]
 //                 withDownloadSavePath:nil
 //                   withUIProgressView:cell.cellPrg
 //           withAFHTTPRequestOperation:operation
 //                 withCurrDownloadCell:cell];
-//                
+//
 //                cell.downloadState = 1;
+                
+                
+                
+                AFDownloadRequestOperation *operation;
+                [strongSelf download4:[_cellName objectAtIndex:indexPath.row]
+                      withDownloadURL:[_urlArr objectAtIndex:indexPath.row]
+                 withDownloadSavePath:nil
+                   withUIProgressView:cell.cellPrg
+           withAFHTTPRequestOperation:operation
+                 withCurrDownloadCell:cell];
+                
+                cell.downloadState = 1;
                 
             }
                 break;
