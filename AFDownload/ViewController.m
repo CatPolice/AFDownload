@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "AFNetworking.h"
 #import "TableViewCell.h"
+#import "AFDownloadRequestOperation.h"
 
 @interface ViewController ()<UITableViewDataSource, UITableViewDelegate>
 {
@@ -24,6 +25,8 @@
     
     AFHTTPRequestOperation *_operation;      //创建请求管理（用于上传和下载）
     
+    
+    AFDownloadRequestOperation *_operationDownload;
     
     NSMutableDictionary *_operationList;
     
@@ -50,7 +53,7 @@
     _tableview.dataSource = self;
     
     _cellName = @[@"Res1",@"Res2"];
-    _urlArr = @[@"http://dldir1.qq.com/qqfile/QQforMac/QQ_V4.0.2.dmg",@"http://dldir1.qq.com/qqfile/QQforMac/QQ_V4.0.2.dmg"];
+    _urlArr = @[@"http://dldir1.qq.com/qqfile/QQforMac/QQ_V4.0.2.dmg",@"http://dl_dir2.qq.com/invc/xfspeed/qdesk/versetup/QDeskSetup_25_1277.exe"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -223,6 +226,61 @@ withAFHTTPRequestOperation:(AFHTTPRequestOperation *)operation
 
 
 
+- (void)    download4:(NSString *)name
+      withDownloadURL:(NSString *)url
+ withDownloadSavePath:(NSString *)path
+   withUIProgressView:(UIProgressView *)prg
+withAFHTTPRequestOperation:(AFDownloadRequestOperation *)operation
+ withCurrDownloadCell:(TableViewCell *)cell;
+
+{
+    
+    
+    NSString *str = [NSString stringWithFormat:@"%@%@",@"%@/Documents/",name];
+    
+    NSString *filePath = [NSString stringWithFormat:str, NSHomeDirectory()];
+    
+    //打印文件保存的路径
+    NSLog(@"%@",filePath);
+    
+    //创建请求管理
+    operation = [[AFDownloadRequestOperation alloc] initWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]] targetPath:filePath shouldResume:YES];
+    
+    //添加下载请求（获取服务器的输出流）
+//    _operationDownload.outputStream = [NSOutputStream outputStreamToFileAtPath:filePath append:NO];
+    
+    [operation setDownloadProgressBlock:^(NSUInteger bytesRead, long long totalBytesRead, long long totalBytesExpectedToRead) {
+        CGFloat progressfloat = ((float)totalBytesRead) / totalBytesExpectedToRead;
+        [prg setProgress:progressfloat animated:YES];
+        
+        NSLog(@"%f",progressfloat);
+    }];
+    
+    //请求管理判断请求结果
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        //success
+        NSLog(@"Finish and Download to: %@", filePath);
+        cell.downloadState = 3;
+        
+        [_tableview reloadData];
+        
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+        //error
+        NSLog(@"Error: %@",error);
+    }];
+    
+    
+    
+    cell.cellOperation = operation;
+    
+    [operation start];
+}
+
+
+
 
 #pragma mark - Table view data source
 
@@ -268,6 +326,19 @@ withAFHTTPRequestOperation:(AFHTTPRequestOperation *)operation
                  withCurrDownloadCell:cell];
 
                 cell.downloadState = 1;
+                
+                
+                
+//                AFDownloadRequestOperation *operation;
+//                [strongSelf download4:[_cellName objectAtIndex:indexPath.row]
+//                      withDownloadURL:[_urlArr objectAtIndex:indexPath.row]
+//                 withDownloadSavePath:nil
+//                   withUIProgressView:cell.cellPrg
+//           withAFHTTPRequestOperation:operation
+//                 withCurrDownloadCell:cell];
+//                
+//                cell.downloadState = 1;
+                
             }
                 break;
                 

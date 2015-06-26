@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		86628EA41B3D126C00AF0B1E /* AFDownloadRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 86628EA31B3D126C00AF0B1E /* AFDownloadRequestOperation.m */; };
 		8693E1ED1B3BA21F001B1903 /* TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8693E1EB1B3BA21F001B1903 /* TableViewCell.m */; };
 		8693E1EE1B3BA21F001B1903 /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8693E1EC1B3BA21F001B1903 /* TableViewCell.xib */; };
 		8693E2001B3BF425001B1903 /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = 8693E1F41B3BF425001B1903 /* ioapi.c */; };
@@ -54,6 +55,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		86628EA21B3D126C00AF0B1E /* AFDownloadRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFDownloadRequestOperation.h; sourceTree = "<group>"; };
+		86628EA31B3D126C00AF0B1E /* AFDownloadRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFDownloadRequestOperation.m; sourceTree = "<group>"; };
 		8693E1EA1B3BA21F001B1903 /* TableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewCell.h; sourceTree = "<group>"; };
 		8693E1EB1B3BA21F001B1903 /* TableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewCell.m; sourceTree = "<group>"; };
 		8693E1EC1B3BA21F001B1903 /* TableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
@@ -143,6 +146,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		86628EA11B3D126C00AF0B1E /* AFDownloadRequestOperation */ = {
+			isa = PBXGroup;
+			children = (
+				86628EA21B3D126C00AF0B1E /* AFDownloadRequestOperation.h */,
+				86628EA31B3D126C00AF0B1E /* AFDownloadRequestOperation.m */,
+			);
+			path = AFDownloadRequestOperation;
+			sourceTree = "<group>";
+		};
 		8693E1F01B3BF425001B1903 /* ZipManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -200,6 +212,7 @@
 		EEB07BC71B3AC15200B037AA /* AFDownload */ = {
 			isa = PBXGroup;
 			children = (
+				86628EA11B3D126C00AF0B1E /* AFDownloadRequestOperation */,
 				8693E1F01B3BF425001B1903 /* ZipManager */,
 				EEB07BEE1B3AC20C00B037AA /* AFNetworking */,
 				EEB07C021B3AC20C00B037AA /* UIKit+AFNetworking */,
@@ -421,6 +434,7 @@
 				EEB07C1A1B3AC20C00B037AA /* AFURLRequestSerialization.m in Sources */,
 				EEB07C1D1B3AC20C00B037AA /* AFNetworkActivityIndicatorManager.m in Sources */,
 				EEB07C1C1B3AC20C00B037AA /* AFURLSessionManager.m in Sources */,
+				86628EA41B3D126C00AF0B1E /* AFDownloadRequestOperation.m in Sources */,
 				EEB07BCE1B3AC15200B037AA /* AppDelegate.m in Sources */,
 				EEB07BCB1B3AC15200B037AA /* main.m in Sources */,
 				8693E2051B3BF425001B1903 /* ZipManager.m in Sources */,
