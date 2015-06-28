@@ -10,6 +10,7 @@
 #import "AFNetworking.h"
 #import "TableViewCell.h"
 #import "AFDownloadRequestOperation.h"
+#import "AFDownloadManager.h"
 
 @interface ViewController ()<UITableViewDataSource, UITableViewDelegate>
 {
@@ -285,7 +286,6 @@ withAFHTTPRequestOperation:(AFDownloadRequestOperation *)operation
     }];
     
     
-    
     cell.cellOperation = operation;
     
     [operation start];
@@ -341,15 +341,32 @@ withAFHTTPRequestOperation:(AFDownloadRequestOperation *)operation
                 
                 
                 
+//                AFDownloadRequestOperation *operation;
+//                [strongSelf download4:[_cellName objectAtIndex:indexPath.row]
+//                      withDownloadURL:[_urlArr objectAtIndex:indexPath.row]
+//                 withDownloadSavePath:nil
+//                   withUIProgressView:cell.cellPrg
+//           withAFHTTPRequestOperation:operation
+//                 withCurrDownloadCell:cell];
+//                
+//                cell.downloadState = 1;
+                
+                
+                
+                
                 AFDownloadRequestOperation *operation;
-                [strongSelf download4:[_cellName objectAtIndex:indexPath.row]
-                      withDownloadURL:[_urlArr objectAtIndex:indexPath.row]
-                 withDownloadSavePath:nil
-                   withUIProgressView:cell.cellPrg
-           withAFHTTPRequestOperation:operation
-                 withCurrDownloadCell:cell];
+                
+                [[AFDownloadManager sharedDownloadManager] download4:[_cellName objectAtIndex:indexPath.row]
+                                                     withDownloadURL:[_urlArr objectAtIndex:indexPath.row]
+                                                withDownloadSavePath:nil
+                                                  withUIProgressView:cell.cellPrg
+                                          withAFHTTPRequestOperation:operation
+                                                withCurrDownloadCell:cell];
                 
                 cell.downloadState = 1;
+
+                
+                
                 
             }
                 break;
@@ -357,8 +374,12 @@ withAFHTTPRequestOperation:(AFDownloadRequestOperation *)operation
             case 1:// downloading
             {
                 if (cell.cellOperation) {
+//                    AFHTTPRequestOperation *operation = cell.cellOperation;
+//                    [operation pause];
+//                    cell.downloadState = 2;
+                    
                     AFHTTPRequestOperation *operation = cell.cellOperation;
-                    [operation pause];
+                    [[AFDownloadManager sharedDownloadManager] pauseDownload:operation];
                     cell.downloadState = 2;
                 }
             }
@@ -367,9 +388,14 @@ withAFHTTPRequestOperation:(AFDownloadRequestOperation *)operation
             case 2: // pauseing
             {
                 if (cell.cellOperation) {
+//                    AFHTTPRequestOperation *operation = cell.cellOperation;
+//                    [operation resume];
+//                    cell.downloadState = 1;
+                    
                     AFHTTPRequestOperation *operation = cell.cellOperation;
-                    [operation resume];
+                    [[AFDownloadManager sharedDownloadManager] resumeDownload:operation];
                     cell.downloadState = 1;
+                    
                 }
             }
                 break;

@@ -308,12 +308,15 @@ typedef void (^AFURLConnectionProgressiveOperationProgressBlock)(AFDownloadReque
 
 #pragma mark - Static
 
+// change save temp -> documents
+
 + (NSString *)cacheFolder {
     NSFileManager *filemgr = [NSFileManager new];
     static NSString *cacheFolder;
 
     if (!cacheFolder) {
-        NSString *cacheDir = NSTemporaryDirectory();
+//        NSString *cacheDir = NSTemporaryDirectory();        
+        NSString *cacheDir = [NSString stringWithFormat:@"%@/Documents",NSHomeDirectory()];
         cacheFolder = [cacheDir stringByAppendingPathComponent:kAFNetworkingIncompleteDownloadFolderName];
     }
 
