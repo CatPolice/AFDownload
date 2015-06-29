@@ -18,6 +18,7 @@
 		8693E2051B3BF425001B1903 /* ZipManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8693E1FF1B3BF425001B1903 /* ZipManager.m */; };
 		8693E2071B3BF4A3001B1903 /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8693E2061B3BF4A3001B1903 /* libz.1.2.5.dylib */; };
 		8693E2091B3BF4AB001B1903 /* libz.1.1.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8693E2081B3BF4AB001B1903 /* libz.1.1.3.dylib */; };
+		86F19D551B40DEC300AF8170 /* UploadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 86F19D541B40DEC300AF8170 /* UploadManager.m */; };
 		EEB07BCB1B3AC15200B037AA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EEB07BCA1B3AC15200B037AA /* main.m */; };
 		EEB07BCE1B3AC15200B037AA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EEB07BCD1B3AC15200B037AA /* AppDelegate.m */; };
 		EEB07BD11B3AC15200B037AA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EEB07BD01B3AC15200B037AA /* ViewController.m */; };
@@ -76,6 +77,8 @@
 		8693E1FF1B3BF425001B1903 /* ZipManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZipManager.m; sourceTree = "<group>"; };
 		8693E2061B3BF4A3001B1903 /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
 		8693E2081B3BF4AB001B1903 /* libz.1.1.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.1.3.dylib; path = usr/lib/libz.1.1.3.dylib; sourceTree = SDKROOT; };
+		86F19D531B40DEC300AF8170 /* UploadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadManager.h; sourceTree = "<group>"; };
+		86F19D541B40DEC300AF8170 /* UploadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadManager.m; sourceTree = "<group>"; };
 		EEB07BC51B3AC15200B037AA /* AFDownload.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AFDownload.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EEB07BC91B3AC15200B037AA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EEB07BCA1B3AC15200B037AA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -223,6 +226,8 @@
 				EEB07BCD1B3AC15200B037AA /* AppDelegate.m */,
 				EEB07C271B3E47AD00B037AA /* AFDownloadManager.h */,
 				EEB07C281B3E47AD00B037AA /* AFDownloadManager.m */,
+				86F19D531B40DEC300AF8170 /* UploadManager.h */,
+				86F19D541B40DEC300AF8170 /* UploadManager.m */,
 				EEB07BCF1B3AC15200B037AA /* ViewController.h */,
 				EEB07BD01B3AC15200B037AA /* ViewController.m */,
 				8693E1EA1B3BA21F001B1903 /* TableViewCell.h */,
@@ -443,6 +448,7 @@
 				86628EA41B3D126C00AF0B1E /* AFDownloadRequestOperation.m in Sources */,
 				EEB07BCE1B3AC15200B037AA /* AppDelegate.m in Sources */,
 				EEB07BCB1B3AC15200B037AA /* main.m in Sources */,
+				86F19D551B40DEC300AF8170 /* UploadManager.m in Sources */,
 				8693E2051B3BF425001B1903 /* ZipManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

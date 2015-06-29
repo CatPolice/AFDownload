@@ -32,11 +32,18 @@
 - (void)resumeAllDownload:(AFHTTPRequestOperation *)afop;
 
 
-- (void)    download4:(NSString *)name
+- (void)    downloadQueueTask:(NSString *)name
       withDownloadURL:(NSString *)url
  withDownloadSavePath:(NSString *)path
    withUIProgressView:(UIProgressView *)prg
 withAFHTTPRequestOperation:(AFDownloadRequestOperation *)operation
  withCurrDownloadCell:(TableViewCell *)cell;
+
+
+
+- (void)downloadSingleTask:(AFHTTPRequestOperation *)operation withUrl:(NSString *)url withFilePath:(NSString *)filePath
+            withUIProgress:(UIProgressView *)progress;
+
+
 
 @end
