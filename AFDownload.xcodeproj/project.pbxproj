@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		86628EA41B3D126C00AF0B1E /* AFDownloadRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 86628EA31B3D126C00AF0B1E /* AFDownloadRequestOperation.m */; };
+		8680978D1B4130F600E83791 /* AFDownloadItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 8680978C1B4130F600E83791 /* AFDownloadItem.m */; };
+		868097961B41443A00E83791 /* TMCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 868097901B41443A00E83791 /* TMCache.m */; };
+		868097971B41443A00E83791 /* TMDiskCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 868097931B41443A00E83791 /* TMDiskCache.m */; };
+		868097981B41443A00E83791 /* TMMemoryCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 868097951B41443A00E83791 /* TMMemoryCache.m */; };
 		8693E1ED1B3BA21F001B1903 /* TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8693E1EB1B3BA21F001B1903 /* TableViewCell.m */; };
 		8693E1EE1B3BA21F001B1903 /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8693E1EC1B3BA21F001B1903 /* TableViewCell.xib */; };
 		8693E2001B3BF425001B1903 /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = 8693E1F41B3BF425001B1903 /* ioapi.c */; };
@@ -48,6 +52,15 @@
 /* Begin PBXFileReference section */
 		86628EA21B3D126C00AF0B1E /* AFDownloadRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFDownloadRequestOperation.h; sourceTree = "<group>"; };
 		86628EA31B3D126C00AF0B1E /* AFDownloadRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFDownloadRequestOperation.m; sourceTree = "<group>"; };
+		8680978B1B4130F600E83791 /* AFDownloadItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFDownloadItem.h; sourceTree = "<group>"; };
+		8680978C1B4130F600E83791 /* AFDownloadItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFDownloadItem.m; sourceTree = "<group>"; };
+		8680978F1B41443A00E83791 /* TMCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMCache.h; sourceTree = "<group>"; };
+		868097901B41443A00E83791 /* TMCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMCache.m; sourceTree = "<group>"; };
+		868097911B41443A00E83791 /* TMCacheBackgroundTaskManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMCacheBackgroundTaskManager.h; sourceTree = "<group>"; };
+		868097921B41443A00E83791 /* TMDiskCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMDiskCache.h; sourceTree = "<group>"; };
+		868097931B41443A00E83791 /* TMDiskCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMDiskCache.m; sourceTree = "<group>"; };
+		868097941B41443A00E83791 /* TMMemoryCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMMemoryCache.h; sourceTree = "<group>"; };
+		868097951B41443A00E83791 /* TMMemoryCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMMemoryCache.m; sourceTree = "<group>"; };
 		8693E1EA1B3BA21F001B1903 /* TableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewCell.h; sourceTree = "<group>"; };
 		8693E1EB1B3BA21F001B1903 /* TableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewCell.m; sourceTree = "<group>"; };
 		8693E1EC1B3BA21F001B1903 /* TableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
@@ -142,6 +155,20 @@
 			path = AFDownloadRequestOperation;
 			sourceTree = "<group>";
 		};
+		8680978E1B41443A00E83791 /* TMCache */ = {
+			isa = PBXGroup;
+			children = (
+				8680978F1B41443A00E83791 /* TMCache.h */,
+				868097901B41443A00E83791 /* TMCache.m */,
+				868097911B41443A00E83791 /* TMCacheBackgroundTaskManager.h */,
+				868097921B41443A00E83791 /* TMDiskCache.h */,
+				868097931B41443A00E83791 /* TMDiskCache.m */,
+				868097941B41443A00E83791 /* TMMemoryCache.h */,
+				868097951B41443A00E83791 /* TMMemoryCache.m */,
+			);
+			path = TMCache;
+			sourceTree = "<group>";
+		};
 		8693E1F01B3BF425001B1903 /* ZipManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -198,6 +225,7 @@
 		EEB07BC71B3AC15200B037AA /* AFDownload */ = {
 			isa = PBXGroup;
 			children = (
+				8680978E1B41443A00E83791 /* TMCache */,
 				86628EA11B3D126C00AF0B1E /* AFDownloadRequestOperation */,
 				8693E1F01B3BF425001B1903 /* ZipManager */,
 				EEB07BEE1B3AC20C00B037AA /* AFNetworking */,
@@ -208,6 +236,8 @@
 				EEB07C281B3E47AD00B037AA /* AFDownloadManager.m */,
 				86F19D531B40DEC300AF8170 /* UploadManager.h */,
 				86F19D541B40DEC300AF8170 /* UploadManager.m */,
+				8680978B1B4130F600E83791 /* AFDownloadItem.h */,
+				8680978C1B4130F600E83791 /* AFDownloadItem.m */,
 				EEB07BCF1B3AC15200B037AA /* ViewController.h */,
 				EEB07BD01B3AC15200B037AA /* ViewController.m */,
 				8693E1EA1B3BA21F001B1903 /* TableViewCell.h */,
@@ -378,6 +408,8 @@
 				8693E2041B3BF425001B1903 /* ZipArchive.mm in Sources */,
 				EEB07C221B3AC20C00B037AA /* UIProgressView+AFNetworking.m in Sources */,
 				EEB07C171B3AC20C00B037AA /* AFNetworkReachabilityManager.m in Sources */,
+				868097971B41443A00E83791 /* TMDiskCache.m in Sources */,
+				8680978D1B4130F600E83791 /* AFDownloadItem.m in Sources */,
 				8693E2021B3BF425001B1903 /* unzip.c in Sources */,
 				EEB07C1B1B3AC20C00B037AA /* AFURLResponseSerialization.m in Sources */,
 				8693E1ED1B3BA21F001B1903 /* TableViewCell.m in Sources */,
@@ -394,7 +426,9 @@
 				EEB07C1F1B3AC20C00B037AA /* UIAlertView+AFNetworking.m in Sources */,
 				EEB07C1A1B3AC20C00B037AA /* AFURLRequestSerialization.m in Sources */,
 				EEB07C1D1B3AC20C00B037AA /* AFNetworkActivityIndicatorManager.m in Sources */,
+				868097961B41443A00E83791 /* TMCache.m in Sources */,
 				EEB07C1C1B3AC20C00B037AA /* AFURLSessionManager.m in Sources */,
+				868097981B41443A00E83791 /* TMMemoryCache.m in Sources */,
 				86628EA41B3D126C00AF0B1E /* AFDownloadRequestOperation.m in Sources */,
 				EEB07BCE1B3AC15200B037AA /* AppDelegate.m in Sources */,
 				EEB07BCB1B3AC15200B037AA /* main.m in Sources */,

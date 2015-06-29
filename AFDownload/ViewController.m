@@ -11,6 +11,7 @@
 #import "TableViewCell.h"
 #import "AFDownloadRequestOperation.h"
 #import "AFDownloadManager.h"
+#import "AFDownloadItem.h"
 
 @interface ViewController ()<UITableViewDataSource, UITableViewDelegate>
 {
@@ -54,10 +55,10 @@
     _cellName = @[@"Res1",@"Res2",@"Res3",@"Res4",@"Res5",@"Res6"];
     _urlArr = @[@"http://192.168.215.192:9002/crmserver/upload/model/A5.zip",
                 @"http://dl_dir2.qq.com/invc/xfspeed/qdesk/versetup/QDeskSetup_25_1277.exe",
-                @"http://dl_dir2.qq.com/invc/xfspeed/qdesk/versetup/QDeskSetup_25_1277.exe",
-                @"http://dl_dir2.qq.com/invc/xfspeed/qdesk/versetup/QDeskSetup_25_1277.exe",
-                @"http://dl_dir2.qq.com/invc/xfspeed/qdesk/versetup/QDeskSetup_25_1277.exe",
-                @"http://dl_dir2.qq.com/invc/xfspeed/qdesk/versetup/QDeskSetup_25_1277.exe"];
+                @"http://218.60.33.162/dlied6.qq.com/invc/xfspeed/qqpcmgr/download/QQPCDownload1324.exe?mkey=5590d637bd71845a&f=d488&p=.exe",
+                @"http://dldir2.qq.com/invc/xfspeed/softmgr/SoftMgr_Setup_S40001.exe",
+                @"http://61.240.128.159/download.sj.qq.com/update/QQPhoneManager_Suit5.3.1_710302.4665.exe?mkey=5590d60fbd71845a&f=d388&p=.exe",
+                @"http://dldir1.qq.com/qqfile/qq/tm/2013Preview2/10913/TM2013Preview2.exe"];
     
     
     
@@ -153,6 +154,8 @@
                     [[AFDownloadManager sharedDownloadManager] pauseDownload:operation];
                     cell.downloadState = 2;
                 }
+                [strongSelf.tableview reloadData];
+                
             }
                 break;
                 
@@ -164,6 +167,7 @@
                     [[AFDownloadManager sharedDownloadManager] resumeDownload:operation];
                     cell.downloadState = 1;   
                 }
+                [strongSelf.tableview reloadData];
             }
                 break;
             
@@ -180,6 +184,7 @@
         }
         [strongSelf.tableview reloadData];
     };
+    
 
     return cell;
 }
