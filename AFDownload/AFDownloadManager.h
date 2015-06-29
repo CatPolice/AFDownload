@@ -13,10 +13,9 @@
 
 @interface AFDownloadManager : NSObject
 
+@property (nonatomic , strong) NSMutableDictionary *downloadDic;
 
 + (instancetype)sharedDownloadManager;
-
-
 
 
 // 开始下载 : 遍历队列中 operationQueue
@@ -32,12 +31,12 @@
 - (void)resumeAllDownload:(AFHTTPRequestOperation *)afop;
 
 
-- (void)    downloadQueueTask:(NSString *)name
-      withDownloadURL:(NSString *)url
- withDownloadSavePath:(NSString *)path
-   withUIProgressView:(UIProgressView *)prg
+- (void)downloadQueueTask:(NSString *)name withDownloadURL:(NSString *)url
+     withDownloadSavePath:(NSString *)path
+       withUIProgressView:(UIProgressView *)prg
 withAFHTTPRequestOperation:(AFDownloadRequestOperation *)operation
- withCurrDownloadCell:(TableViewCell *)cell;
+     withCurrDownloadCell:(UITableViewCell *)cell
+          downloadSuccess:(void (^)(NSInteger state))success;
 
 
 

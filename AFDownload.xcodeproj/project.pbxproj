@@ -25,7 +25,6 @@
 		EEB07BD41B3AC15200B037AA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EEB07BD21B3AC15200B037AA /* Main.storyboard */; };
 		EEB07BD61B3AC15200B037AA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EEB07BD51B3AC15200B037AA /* Images.xcassets */; };
 		EEB07BD91B3AC15200B037AA /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = EEB07BD71B3AC15200B037AA /* LaunchScreen.xib */; };
-		EEB07BE51B3AC15300B037AA /* AFDownloadTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EEB07BE41B3AC15300B037AA /* AFDownloadTests.m */; };
 		EEB07C141B3AC20C00B037AA /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EEB07BF01B3AC20C00B037AA /* AFHTTPRequestOperation.m */; };
 		EEB07C151B3AC20C00B037AA /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EEB07BF21B3AC20C00B037AA /* AFHTTPRequestOperationManager.m */; };
 		EEB07C161B3AC20C00B037AA /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EEB07BF41B3AC20C00B037AA /* AFHTTPSessionManager.m */; };
@@ -45,16 +44,6 @@
 		EEB07C241B3AC20C00B037AA /* UIWebView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = EEB07C131B3AC20C00B037AA /* UIWebView+AFNetworking.m */; };
 		EEB07C291B3E47AD00B037AA /* AFDownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EEB07C281B3E47AD00B037AA /* AFDownloadManager.m */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		EEB07BDF1B3AC15300B037AA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = EEB07BBD1B3AC15200B037AA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = EEB07BC41B3AC15200B037AA;
-			remoteInfo = AFDownload;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		86628EA21B3D126C00AF0B1E /* AFDownloadRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFDownloadRequestOperation.h; sourceTree = "<group>"; };
@@ -89,7 +78,6 @@
 		EEB07BD31B3AC15200B037AA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EEB07BD51B3AC15200B037AA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		EEB07BD81B3AC15200B037AA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		EEB07BDE1B3AC15300B037AA /* AFDownloadTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AFDownloadTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EEB07BE31B3AC15300B037AA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EEB07BE41B3AC15300B037AA /* AFDownloadTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AFDownloadTests.m; sourceTree = "<group>"; };
 		EEB07BEF1B3AC20C00B037AA /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
@@ -139,13 +127,6 @@
 			files = (
 				8693E2091B3BF4AB001B1903 /* libz.1.1.3.dylib in Frameworks */,
 				8693E2071B3BF4A3001B1903 /* libz.1.2.5.dylib in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		EEB07BDB1B3AC15300B037AA /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -210,7 +191,6 @@
 			isa = PBXGroup;
 			children = (
 				EEB07BC51B3AC15200B037AA /* AFDownload.app */,
-				EEB07BDE1B3AC15300B037AA /* AFDownloadTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -339,24 +319,6 @@
 			productReference = EEB07BC51B3AC15200B037AA /* AFDownload.app */;
 			productType = "com.apple.product-type.application";
 		};
-		EEB07BDD1B3AC15300B037AA /* AFDownloadTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = EEB07BEB1B3AC15300B037AA /* Build configuration list for PBXNativeTarget "AFDownloadTests" */;
-			buildPhases = (
-				EEB07BDA1B3AC15300B037AA /* Sources */,
-				EEB07BDB1B3AC15300B037AA /* Frameworks */,
-				EEB07BDC1B3AC15300B037AA /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				EEB07BE01B3AC15300B037AA /* PBXTargetDependency */,
-			);
-			name = AFDownloadTests;
-			productName = AFDownloadTests;
-			productReference = EEB07BDE1B3AC15300B037AA /* AFDownloadTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -368,10 +330,6 @@
 				TargetAttributes = {
 					EEB07BC41B3AC15200B037AA = {
 						CreatedOnToolsVersion = 6.3;
-					};
-					EEB07BDD1B3AC15300B037AA = {
-						CreatedOnToolsVersion = 6.3;
-						TestTargetID = EEB07BC41B3AC15200B037AA;
 					};
 				};
 			};
@@ -389,7 +347,6 @@
 			projectRoot = "";
 			targets = (
 				EEB07BC41B3AC15200B037AA /* AFDownload */,
-				EEB07BDD1B3AC15300B037AA /* AFDownloadTests */,
 			);
 		};
 /* End PBXProject section */
@@ -403,13 +360,6 @@
 				8693E1EE1B3BA21F001B1903 /* TableViewCell.xib in Resources */,
 				EEB07BD91B3AC15200B037AA /* LaunchScreen.xib in Resources */,
 				EEB07BD61B3AC15200B037AA /* Images.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		EEB07BDC1B3AC15300B037AA /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -453,23 +403,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		EEB07BDA1B3AC15300B037AA /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				EEB07BE51B3AC15300B037AA /* AFDownloadTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		EEB07BE01B3AC15300B037AA /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = EEB07BC41B3AC15200B037AA /* AFDownload */;
-			targetProxy = EEB07BDF1B3AC15300B037AA /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		EEB07BD21B3AC15200B037AA /* Main.storyboard */ = {
@@ -593,42 +527,6 @@
 			};
 			name = Release;
 		};
-		EEB07BEC1B3AC15300B037AA /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = AFDownloadTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AFDownload.app/AFDownload";
-			};
-			name = Debug;
-		};
-		EEB07BED1B3AC15300B037AA /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = AFDownloadTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AFDownload.app/AFDownload";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -646,15 +544,6 @@
 			buildConfigurations = (
 				EEB07BE91B3AC15300B037AA /* Debug */,
 				EEB07BEA1B3AC15300B037AA /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		EEB07BEB1B3AC15300B037AA /* Build configuration list for PBXNativeTarget "AFDownloadTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				EEB07BEC1B3AC15300B037AA /* Debug */,
-				EEB07BED1B3AC15300B037AA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

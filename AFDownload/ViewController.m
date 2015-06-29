@@ -26,10 +26,9 @@
     AFHTTPRequestOperation *_operation;      //创建请求管理（用于上传和下载）
     
     
-    AFDownloadRequestOperation *_operationDownload;
+    AFDownloadRequestOperation *_operationSingleDownload;
     
     NSMutableDictionary *_operationList;
-    
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
 
@@ -52,8 +51,17 @@
     _tableview.delegate = self;
     _tableview.dataSource = self;
     
-    _cellName = @[@"Res1",@"Res2"];
-    _urlArr = @[@"http://192.168.215.192:9002/crmserver/upload/model/A5.zip",@"http://dl_dir2.qq.com/invc/xfspeed/qdesk/versetup/QDeskSetup_25_1277.exe"];
+    _cellName = @[@"Res1",@"Res2",@"Res3",@"Res4",@"Res5",@"Res6"];
+    _urlArr = @[@"http://192.168.215.192:9002/crmserver/upload/model/A5.zip",
+                @"http://dl_dir2.qq.com/invc/xfspeed/qdesk/versetup/QDeskSetup_25_1277.exe",
+                @"http://dl_dir2.qq.com/invc/xfspeed/qdesk/versetup/QDeskSetup_25_1277.exe",
+                @"http://dl_dir2.qq.com/invc/xfspeed/qdesk/versetup/QDeskSetup_25_1277.exe",
+                @"http://dl_dir2.qq.com/invc/xfspeed/qdesk/versetup/QDeskSetup_25_1277.exe",
+                @"http://dl_dir2.qq.com/invc/xfspeed/qdesk/versetup/QDeskSetup_25_1277.exe"];
+    
+    
+    
+    //=============
 }
 
 - (void)didReceiveMemoryWarning {
@@ -62,43 +70,19 @@
 
 // 开始
 - (IBAction)beginAction:(id)sender {
-//    [self download];
+    NSString *filePath = [NSString stringWithFormat:@"%@/Documents/QQ_V4.0.2.dmg", NSHomeDirectory()];
     
-    [self downloadStart];
+    [[AFDownloadManager sharedDownloadManager] downloadSingleTask:_operationSingleDownload
+                                                          withUrl:@"http://dl_dir2.qq.com/invc/xfspeed/qdesk/versetup/QDeskSetup_25_1277.exe"
+                                                     withFilePath:filePath
+                                                   withUIProgress:self.progress];
 }
-
 // 暂停
 - (IBAction)pauseAction:(id)sender {
-    [self downloadPause];
 }
 
 // 继续
 - (IBAction)resumeAction:(id)sender {
-    [self downloadResume];
-}
-
-
-
-
-#pragma mark download 2
-
-//开始下载（断点续传）
-- (void)downloadStart
-{
-//    [self download2];
-//    [_operation start];
-}
-
-//暂停下载（断点续传）
-- (void)downloadPause
-{
-//    [_operation pause];
-}
-
-//继续下载（断点续传）
-- (void)downloadResume
-{
-//    [_operation resume];
 }
 
 
@@ -114,7 +98,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return 2;
+    return 6;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -136,29 +120,36 @@
     cell.cellDownloadCallBack = ^(TableViewCell *cell){
         __strong __typeof(weakSelf)strongSelf = weakSelf;
         
+        NSIndexPath *index = [_tableview indexPathForCell:cell];
+        
+        
         switch (cell.downloadState) {
             case 0: // prepareing
             {
-                
                 AFDownloadRequestOperation *operation;
                 
-                [[AFDownloadManager sharedDownloadManager] downloadQueueTask:[_cellName objectAtIndex:indexPath.row]
-                                                     withDownloadURL:[_urlArr objectAtIndex:indexPath.row]
-                                                withDownloadSavePath:nil
-                                                  withUIProgressView:cell.cellPrg
-                                          withAFHTTPRequestOperation:operation
-                                                withCurrDownloadCell:cell];
-                
+                [[AFDownloadManager sharedDownloadManager] downloadQueueTask:[_cellName objectAtIndex:index.row]
+                                                             withDownloadURL:[_urlArr objectAtIndex:index.row]
+                                                        withDownloadSavePath:nil
+                                                          withUIProgressView:cell.cellPrg
+                                                  withAFHTTPRequestOperation:operation
+                                                        withCurrDownloadCell:nil
+                                                             downloadSuccess:^(NSInteger result) {
+                                                                 
+                                                  cell.downloadState = result;
+                                                  [strongSelf.tableview reloadData];
+                                                                 
+                }];
                 cell.downloadState = 1;
-                
+    
             }
                 break;
                 
             case 1:// downloading
             {
-                if (cell.cellOperation) {
+                if ([[AFDownloadManager sharedDownloadManager].downloadDic objectForKey:[_urlArr objectAtIndex:index.row]]) {
                     
-                    AFHTTPRequestOperation *operation = cell.cellOperation;
+                    AFHTTPRequestOperation *operation = [[AFDownloadManager sharedDownloadManager].downloadDic objectForKey:[_urlArr objectAtIndex:index.row]];
                     [[AFDownloadManager sharedDownloadManager] pauseDownload:operation];
                     cell.downloadState = 2;
                 }
@@ -167,12 +158,11 @@
                 
             case 2: // pauseing
             {
-                if (cell.cellOperation) {
+                if ([[AFDownloadManager sharedDownloadManager].downloadDic objectForKey:[_urlArr objectAtIndex:index.row]]) {
                     
-                    AFHTTPRequestOperation *operation = cell.cellOperation;
+                    AFHTTPRequestOperation *operation = [[AFDownloadManager sharedDownloadManager].downloadDic objectForKey:[_urlArr objectAtIndex:index.row]];
                     [[AFDownloadManager sharedDownloadManager] resumeDownload:operation];
-                    cell.downloadState = 1;
-                    
+                    cell.downloadState = 1;   
                 }
             }
                 break;

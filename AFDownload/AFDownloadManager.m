@@ -8,28 +8,17 @@
 
 #import "AFDownloadManager.h"
 
+#define MAXOPERATIONCOUNT 5
+
+
 @implementation AFDownloadManager
 {
-    
     AFURLSessionManager * _manager; // ios7 > ; download
     
     NSOperationQueue *_downloadQueue;
 }
 
-- (id)init
-{
-    self = [super init];
-    
-    if (self) {
-        _downloadQueue = [[NSOperationQueue alloc] init];
-        [_downloadQueue setMaxConcurrentOperationCount:3];
-        
-//        _operationDictionary=[[NSMutableDictionary alloc]init];
-//        _receviedBytesArray=[[NSMutableDictionary alloc]init];
-    }
-    return self;
-}
-
+#pragma mark shared onceToken
 + (instancetype)sharedDownloadManager {
     static dispatch_once_t onceToken;
     static id sharedManager = nil;
@@ -40,20 +29,33 @@
     return sharedManager;
 }
 
-
+#pragma mark init
+- (id)init
+{
+    self = [super init];
+    
+    if (self) {
+        _downloadQueue = [[NSOperationQueue alloc] init];
+        self.downloadDic = [[NSMutableDictionary alloc] init];
+        
+        [_downloadQueue setMaxConcurrentOperationCount:MAXOPERATIONCOUNT]; // set max operation count
+        
+//        _operationDictionary=[[NSMutableDictionary alloc]init];
+//        _receviedBytesArray=[[NSMutableDictionary alloc]init];
+    }
+    return self;
+}
 
 #pragma mark download
 
-- (void)    downloadQueueTask:(NSString *)name
-      withDownloadURL:(NSString *)url
- withDownloadSavePath:(NSString *)path
-   withUIProgressView:(UIProgressView *)prg
-withAFHTTPRequestOperation:(AFDownloadRequestOperation *)operation
- withCurrDownloadCell:(TableViewCell *)cell
+- (void)downloadQueueTask:(NSString *)name withDownloadURL:(NSString *)url
+                                      withDownloadSavePath:(NSString *)path
+                                        withUIProgressView:(UIProgressView *)prg
+                                withAFHTTPRequestOperation:(AFDownloadRequestOperation *)operation
+                                      withCurrDownloadCell:(UITableViewCell *)cell
+                                           downloadSuccess:(void (^)(NSInteger state))success
 
 {
-    
-    
     NSString *str = [NSString stringWithFormat:@"%@%@",@"%@/Documents/",name];
     
     NSString *filePath = [NSString stringWithFormat:str, NSHomeDirectory()];
@@ -82,18 +84,18 @@ withAFHTTPRequestOperation:(AFDownloadRequestOperation *)operation
         
         //success
         NSLog(@"Finish and Download to: %@", filePath);
-        cell.downloadState = 3;
-        
-        
+        success(3);
+         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         
         //error
         NSLog(@"Error: %@",error);
     }];
     
-    cell.cellOperation = operation;
-    
     [_downloadQueue addOperation:operation];
+    
+    
+    [self.downloadDic setObject:operation forKey:url];
     
 }
 
