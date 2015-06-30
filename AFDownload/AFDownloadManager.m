@@ -72,7 +72,7 @@
     [operation setProgressiveDownloadProgressBlock:^(AFDownloadRequestOperation *operation, NSInteger bytesRead, long long totalBytesRead, long long totalBytesExpected, long long totalBytesReadForFile, long long totalBytesExpectedToReadForFile) {
         
         CGFloat progressfloat = totalBytesReadForFile/(float)totalBytesExpectedToReadForFile;
-        NSLog(@"%f",progressfloat);
+//        NSLog(@"%f",progressfloat);
         
         [prg setProgress:progressfloat animated:YES];
         

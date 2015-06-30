@@ -12,6 +12,7 @@
 #import "AFDownloadRequestOperation.h"
 #import "AFDownloadManager.h"
 #import "AFDownloadItem.h"
+#import "TMDiskCache.h"
 
 @interface ViewController ()<UITableViewDataSource, UITableViewDelegate>
 {
@@ -114,7 +115,21 @@
     cell.cellName.text = [_cellName objectAtIndex:indexPath.row];
     //0:未下载  1:下载中 2:暂停 3:完成
     NSArray *arr = @[@"下载",@"下载中",@"暂停",@"完成"];
-    cell.cellState.text = [arr objectAtIndex:cell.downloadState];
+    
+    
+    if ([[TMDiskCache sharedCache] objectForKey:[_urlArr objectAtIndex:indexPath.row]]) {
+        
+        AFDownloadItem *item = (AFDownloadItem *)[[TMDiskCache sharedCache] objectForKey:[_urlArr objectAtIndex:indexPath.row]];
+        cell.cellPrg.progress = [item.progrees floatValue];
+        cell.cellState.text = [arr objectAtIndex:[item.state integerValue]];
+        cell.downloadState = [item.state integerValue];
+        
+    }else{
+        
+        cell.cellState.text = [arr objectAtIndex:cell.downloadState];
+        
+    }
+    
     
     __weak __typeof(self)weakSelf = self;
     
@@ -137,8 +152,16 @@
                                                         withCurrDownloadCell:nil
                                                              downloadSuccess:^(NSInteger result) {
                                                                  
-                                                  cell.downloadState = result;
-                                                  [strongSelf.tableview reloadData];
+                                                                 NSLog(@"download success ~ ");
+                                                                 
+                                                                 AFDownloadItem *item = [[AFDownloadItem alloc] init];
+                                                                 item.url = [_urlArr objectAtIndex:index.row];
+                                                                 item.progrees = @"1";
+                                                                 item.state = [NSString stringWithFormat:@"%zd",result];
+                                                                 [[TMDiskCache sharedCache] setObject:item forKey:[_urlArr objectAtIndex:index.row]];
+                                                                 
+                                                                 cell.downloadState = result;
+                                                                 [strongSelf.tableview reloadData];
                                                                  
                 }];
                 cell.downloadState = 1;
@@ -153,6 +176,14 @@
                     AFHTTPRequestOperation *operation = [[AFDownloadManager sharedDownloadManager].downloadDic objectForKey:[_urlArr objectAtIndex:index.row]];
                     [[AFDownloadManager sharedDownloadManager] pauseDownload:operation];
                     cell.downloadState = 2;
+                    
+                    
+                    AFDownloadItem *item = [[AFDownloadItem alloc] init];
+                    item.url = [_urlArr objectAtIndex:index.row];
+                    item.progrees = [NSString stringWithFormat:@"%f",cell.cellPrg.progress];
+                    item.state = [NSString stringWithFormat:@"%d",2];
+                    [[TMDiskCache sharedCache] setObject:item forKey:[_urlArr objectAtIndex:index.row]];
+                    
                 }
                 [strongSelf.tableview reloadData];
                 
@@ -165,8 +196,33 @@
                     
                     AFHTTPRequestOperation *operation = [[AFDownloadManager sharedDownloadManager].downloadDic objectForKey:[_urlArr objectAtIndex:index.row]];
                     [[AFDownloadManager sharedDownloadManager] resumeDownload:operation];
-                    cell.downloadState = 1;   
+                }else{
+                    AFDownloadRequestOperation *operation;
+                    
+                    [[AFDownloadManager sharedDownloadManager] downloadQueueTask:[_cellName objectAtIndex:index.row]
+                                                                 withDownloadURL:[_urlArr objectAtIndex:index.row]
+                                                            withDownloadSavePath:nil
+                                                              withUIProgressView:cell.cellPrg
+                                                      withAFHTTPRequestOperation:operation
+                                                            withCurrDownloadCell:nil
+                                                                 downloadSuccess:^(NSInteger result) {
+                                                                     
+                                                                     NSLog(@"download success ~ ");
+                                                                     
+                                                                     AFDownloadItem *item = [[AFDownloadItem alloc] init];
+                                                                     item.url = [_urlArr objectAtIndex:index.row];
+                                                                     item.progrees = @"1";
+                                                                     item.state = [NSString stringWithFormat:@"%zd",result];
+                                                                     [[TMDiskCache sharedCache] setObject:item forKey:[_urlArr objectAtIndex:index.row]];
+                                                                     
+                                                                     cell.downloadState = result;
+                                                                     [strongSelf.tableview reloadData];
+                                                                     
+                                                                 }];
+
                 }
+                [[TMDiskCache sharedCache] removeObjectForKey:[_urlArr objectAtIndex:index.row]];
+                cell.downloadState = 1;
                 [strongSelf.tableview reloadData];
             }
                 break;
@@ -182,9 +238,7 @@
             default:
                 break;
         }
-        [strongSelf.tableview reloadData];
     };
-    
 
     return cell;
 }

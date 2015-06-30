@@ -147,8 +147,14 @@ typedef void (^AFURLConnectionProgressiveOperationProgressBlock)(AFDownloadReque
         tempPath = [[[self class] cacheFolder] stringByAppendingPathComponent:self.fileIdentifier];
     }
     else if (self.targetPath) {
-        NSString *md5URLString = [[self class] md5StringForString:self.targetPath];
+        
+
+        NSString *md5URLString = [[self class] md5StringForString:[self.targetPath lastPathComponent]];
         tempPath = [[[self class] cacheFolder] stringByAppendingPathComponent:md5URLString];
+        
+//        NSLog(@"%@",self.targetPath);
+//        NSLog(@"%@",md5URLString);
+        
     }
     return tempPath;
 }
