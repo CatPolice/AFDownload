@@ -32,15 +32,18 @@
 
 
 - (void)downloadQueueTask:(NSString *)name withDownloadURL:(NSString *)url
-     withDownloadSavePath:(NSString *)path
-       withUIProgressView:(UIProgressView *)prg
-withAFHTTPRequestOperation:(AFDownloadRequestOperation *)operation
-     withCurrDownloadCell:(UITableViewCell *)cell
-          downloadSuccess:(void (^)(NSInteger state))success;
+                                      withDownloadSavePath:(NSString *)path
+                                        withUIProgressView:(UIProgressView *)prg
+                                withAFHTTPRequestOperation:(AFDownloadRequestOperation *)operation
+                                      withCurrDownloadCell:(UITableViewCell *)cell
+                                           downloadSuccess:(void (^)(NSInteger state))success
+                                             downloadError:(void (^)(AFHTTPRequestOperation *operation, NSError *error))downloadError;
 
 
 
-- (void)downloadSingleTask:(AFHTTPRequestOperation *)operation withUrl:(NSString *)url withFilePath:(NSString *)filePath
+- (void)downloadSingleTask:(AFHTTPRequestOperation *)operation
+                   withUrl:(NSString *)url
+              withFilePath:(NSString *)filePath
             withUIProgress:(UIProgressView *)progress;
 
 

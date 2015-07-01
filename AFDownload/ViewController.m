@@ -53,6 +53,11 @@
     _tableview.delegate = self;
     _tableview.dataSource = self;
     
+    // 错误下载地址
+//    http://218.60.33.162/dlied6.qq.com/invc/xfspeed/qqpcmgr/download/QQPCDownload1324.exe?mkey=5590d637bd71845a&f=d488&p=.exe
+    
+//    http://dldir1.qq.com/music/clntupate/QQMusic_Setup_1174.exe
+    
     _cellName = @[@"Res1",@"Res2",@"Res3",@"Res4",@"Res5",@"Res6"];
     _urlArr = @[@"http://192.168.215.192:9002/crmserver/upload/model/A5.zip",
                 @"http://dl_dir2.qq.com/invc/xfspeed/qdesk/versetup/QDeskSetup_25_1277.exe",
@@ -163,9 +168,12 @@
                                                                  cell.downloadState = result;
                                                                  [strongSelf.tableview reloadData];
                                                                  
-                }];
+                                                             } downloadError:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                                                 NSLog(@"error tableview reload ~");
+                                                                 cell.downloadState = 0;
+                                                                 [strongSelf.tableview reloadData];
+                                                             }];
                 cell.downloadState = 1;
-    
             }
                 break;
                 
@@ -177,16 +185,13 @@
                     [[AFDownloadManager sharedDownloadManager] pauseDownload:operation];
                     cell.downloadState = 2;
                     
-                    
                     AFDownloadItem *item = [[AFDownloadItem alloc] init];
                     item.url = [_urlArr objectAtIndex:index.row];
                     item.progrees = [NSString stringWithFormat:@"%f",cell.cellPrg.progress];
                     item.state = [NSString stringWithFormat:@"%d",2];
                     [[TMDiskCache sharedCache] setObject:item forKey:[_urlArr objectAtIndex:index.row]];
-                    
                 }
                 [strongSelf.tableview reloadData];
-                
             }
                 break;
                 
@@ -218,6 +223,10 @@
                                                                      cell.downloadState = result;
                                                                      [strongSelf.tableview reloadData];
                                                                      
+                                                                 } downloadError:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                                                     NSLog(@"error tableview reload ~");
+                                                                     cell.downloadState = 0;
+                                                                     [strongSelf.tableview reloadData];
                                                                  }];
 
                 }

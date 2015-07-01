@@ -54,6 +54,7 @@
                                 withAFHTTPRequestOperation:(AFDownloadRequestOperation *)operation
                                       withCurrDownloadCell:(UITableViewCell *)cell
                                            downloadSuccess:(void (^)(NSInteger state))success
+                                             downloadError:(void (^)(AFHTTPRequestOperation *operation, NSError *error))downloadError
 
 {
     NSString *str = [NSString stringWithFormat:@"%@%@",@"%@/Documents/",name];
@@ -73,7 +74,6 @@
         
         CGFloat progressfloat = totalBytesReadForFile/(float)totalBytesExpectedToReadForFile;
 //        NSLog(@"%f",progressfloat);
-        
         [prg setProgress:progressfloat animated:YES];
         
     }];
@@ -90,10 +90,11 @@
         
         //error
         NSLog(@"Error: %@",error);
+        [operation cancel];
+        downloadError(operation , error);
     }];
     
     [_downloadQueue addOperation:operation];
-    
     
     [self.downloadDic setObject:operation forKey:url];
     
@@ -211,7 +212,6 @@
                                                   NSLog(@"File downloaded to: %@", filePath);
                                                   
                                               }];
-    
     [downloadTask resume];
 }
 
@@ -219,16 +219,13 @@
 
 
 #pragma mark download progree BUG! Prudent use!
-- (void)    download3:(NSString *)name
-      withDownloadURL:(NSString *)url
- withDownloadSavePath:(NSString *)path
-   withUIProgressView:(UIProgressView *)prg
-withAFHTTPRequestOperation:(AFHTTPRequestOperation *)operation
- withCurrDownloadCell:(TableViewCell *)cell;
+- (void) download3:(NSString *)name  withDownloadURL:(NSString *)url
+                                withDownloadSavePath:(NSString *)path
+                                  withUIProgressView:(UIProgressView *)prg
+                          withAFHTTPRequestOperation:(AFHTTPRequestOperation *)operation
+                                withCurrDownloadCell:(TableViewCell *)cell;
 
 {
-    
-    
     NSString *str = [NSString stringWithFormat:@"%@%@",@"%@/Documents/",name];
     
     NSString *filePath = [NSString stringWithFormat:str, NSHomeDirectory()];
