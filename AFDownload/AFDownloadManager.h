@@ -36,7 +36,7 @@
                                         withUIProgressView:(UIProgressView *)prg
                                 withAFHTTPRequestOperation:(AFDownloadRequestOperation *)operation
                                       withCurrDownloadCell:(UITableViewCell *)cell
-                                           downloadSuccess:(void (^)(NSInteger state))success
+                                           downloadSuccess:(void (^)(AFHTTPRequestOperation *operation, id responseObject , NSInteger state))success
                                              downloadError:(void (^)(AFHTTPRequestOperation *operation, NSError *error))downloadError;
 
 

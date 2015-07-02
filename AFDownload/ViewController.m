@@ -155,17 +155,17 @@
                                                           withUIProgressView:cell.cellPrg
                                                   withAFHTTPRequestOperation:operation
                                                         withCurrDownloadCell:nil
-                                                             downloadSuccess:^(NSInteger result) {
+                                                             downloadSuccess:^(AFHTTPRequestOperation *operation, id responseObject , NSInteger state) {
                                                                  
                                                                  NSLog(@"download success ~ ");
                                                                  
                                                                  AFDownloadItem *item = [[AFDownloadItem alloc] init];
                                                                  item.url = [_urlArr objectAtIndex:index.row];
                                                                  item.progrees = @"1";
-                                                                 item.state = [NSString stringWithFormat:@"%zd",result];
+                                                                 item.state = [NSString stringWithFormat:@"%zd",state];
                                                                  [[TMDiskCache sharedCache] setObject:item forKey:[_urlArr objectAtIndex:index.row]];
                                                                  
-                                                                 cell.downloadState = result;
+                                                                 cell.downloadState = state;
                                                                  [strongSelf.tableview reloadData];
                                                                  
                                                              } downloadError:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -210,17 +210,17 @@
                                                               withUIProgressView:cell.cellPrg
                                                       withAFHTTPRequestOperation:operation
                                                             withCurrDownloadCell:nil
-                                                                 downloadSuccess:^(NSInteger result) {
+                                                                 downloadSuccess:^(AFHTTPRequestOperation *operation, id responseObject , NSInteger state) {
                                                                      
                                                                      NSLog(@"download success ~ ");
                                                                      
                                                                      AFDownloadItem *item = [[AFDownloadItem alloc] init];
                                                                      item.url = [_urlArr objectAtIndex:index.row];
                                                                      item.progrees = @"1";
-                                                                     item.state = [NSString stringWithFormat:@"%zd",result];
+                                                                     item.state = [NSString stringWithFormat:@"%zd",state];
                                                                      [[TMDiskCache sharedCache] setObject:item forKey:[_urlArr objectAtIndex:index.row]];
                                                                      
-                                                                     cell.downloadState = result;
+                                                                     cell.downloadState = state;
                                                                      [strongSelf.tableview reloadData];
                                                                      
                                                                  } downloadError:^(AFHTTPRequestOperation *operation, NSError *error) {

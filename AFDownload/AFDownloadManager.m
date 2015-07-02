@@ -53,7 +53,7 @@
                                         withUIProgressView:(UIProgressView *)prg
                                 withAFHTTPRequestOperation:(AFDownloadRequestOperation *)operation
                                       withCurrDownloadCell:(UITableViewCell *)cell
-                                           downloadSuccess:(void (^)(NSInteger state))success
+                                           downloadSuccess:(void (^)(AFHTTPRequestOperation *operation, id responseObject , NSInteger state))success
                                              downloadError:(void (^)(AFHTTPRequestOperation *operation, NSError *error))downloadError
 
 {
@@ -84,7 +84,8 @@
         
         //success
         NSLog(@"Finish and Download to: %@", filePath);
-        success(3);
+        //0:未下载  1:下载中 2:暂停 3:完成
+        success(operation,responseObject,3);
          
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         
