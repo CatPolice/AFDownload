@@ -44,7 +44,9 @@
 - (void)downloadSingleTask:(AFHTTPRequestOperation *)operation
                    withUrl:(NSString *)url
               withFilePath:(NSString *)filePath
-            withUIProgress:(UIProgressView *)progress;
+            withUIProgress:(UIProgressView *)progress
+           downloadSuccess:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+             downloadError:(void (^)(AFHTTPRequestOperation *operation, NSError *error))downloadError;
 
 
 

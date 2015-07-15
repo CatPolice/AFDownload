@@ -154,7 +154,9 @@
 #pragma mark single download
 
 - (void)downloadSingleTask:(AFHTTPRequestOperation *)operation withUrl:(NSString *)url withFilePath:(NSString *)filePath
-            withUIProgress:(UIProgressView *)progress{
+            withUIProgress:(UIProgressView *)progress
+           downloadSuccess:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+             downloadError:(void (^)(AFHTTPRequestOperation *operation, NSError *error))downloadError{
 //    NSString *filePath = [NSString stringWithFormat:@"%@/Documents/QQ_V4.0.2.dmg", NSHomeDirectory()];
     
     //打印文件保存的路径
@@ -175,10 +177,12 @@
         
         //success
         NSLog(@"Finish and Download to: %@", filePath);
+        success(operation,responseObject);
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         //error
         NSLog(@"Error: %@",error);
+        downloadError(operation , error);
     }];
     
     [operation start];

@@ -77,12 +77,12 @@
 
 // 开始
 - (IBAction)beginAction:(id)sender {
-    NSString *filePath = [NSString stringWithFormat:@"%@/Documents/QQ_V4.0.2.dmg", NSHomeDirectory()];
+//    NSString *filePath = [NSString stringWithFormat:@"%@/Documents/QQ_V4.0.2.dmg", NSHomeDirectory()];
     
-    [[AFDownloadManager sharedDownloadManager] downloadSingleTask:_operationSingleDownload
-                                                          withUrl:@"http://dl_dir2.qq.com/invc/xfspeed/qdesk/versetup/QDeskSetup_25_1277.exe"
-                                                     withFilePath:filePath
-                                                   withUIProgress:self.progress];
+//    [[AFDownloadManager sharedDownloadManager] downloadSingleTask:_operationSingleDownload
+//                                                          withUrl:@"http://dl_dir2.qq.com/invc/xfspeed/qdesk/versetup/QDeskSetup_25_1277.exe"
+//                                                     withFilePath:filePath
+//                                                   withUIProgress:self.progress];
 }
 // 暂停
 - (IBAction)pauseAction:(id)sender {
